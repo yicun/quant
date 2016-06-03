@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.quant.dal.dao.TradeInfoDAO">
+    <resultMap type="TradeInfo" id="tradeInfo">
+        <id column="id" property="id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="mt4_trade_id" property="mt4TradeId" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+        <result column="op_uid" property="opUid" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="trade_type" property="tradeType" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="status" property="status" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <result column="delete_time" property="deleteTime" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <result column="ext_info" property="extInfo" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="tradeSql">id, mt4_trade_id, op_uid, trade_type, status, create_time, update_time, delete_time, ext_info</sql>
+
+    <select id="queryTradeById" parameterType="int" resultType="tradeInfo">
+        select
+        <include refid="tradeSql" />
+        from mt_trade_info where id=#{id}
+    </select>
+
+
+</mapper>
